@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 // import loginimg from './login.png';
 import {setToken} from './Auth.js'
 import Employee from './employee'
+import './style.css'
  
 const ELogin = () => {
     const [email, setEmail] = useState("");
@@ -41,7 +42,7 @@ const ELogin = () => {
               <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                 <form>
                   <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                    <p className="lead fw-normal mb-0 me-3">Employee Login</p>
+                    <p className="lead fw-normal mb-0 me-3">Call Centre Employee Login</p>
                   </div>
                     <h1 style={{color: 'red', fontSize: '15px', textAlign: 'center', marginTop: '20px'}}>{error && error}</h1>
                   <div className="form-outline mb-4">

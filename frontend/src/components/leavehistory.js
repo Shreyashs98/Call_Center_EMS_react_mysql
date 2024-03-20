@@ -18,11 +18,11 @@ function LeaveHistory() {
     }, []);
 
     return (
-        <div className='d-flex flex-column align-items-center pt-4'>
+        <div className='d-flex flex-column align-items-center pt-4' >
             <h2>Leave History</h2>
-            <div className="row g-3 w-50">
+            <div className="row ">
                 <div className="col-12">
-                    <table className="table table-striped">
+                    <table className="table table-striped" style={{ width: '100%', }}>
                         <thead>
                             <tr>
                                 <th>Leave Type</th>
@@ -50,4 +50,5 @@ function LeaveHistory() {
     );
 }
 
+  
 export default LeaveHistory;

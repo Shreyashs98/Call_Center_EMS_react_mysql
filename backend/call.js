@@ -25,6 +25,41 @@ con.connect(function(err) {
     }
 });
 
+// it will be used in admin only department
+app.get('/departments', (req, res) => {
+    const sql = "SELECT * FROM departments_view";
+    con.query(sql, (err, result) => {
+        if(err) return res.json({Error: "Get department error in SQL"});
+        return res.json({Status: "Success", Result: result});
+    });
+});
+
+// department
+app.post('/department/create', (req, res) => {
+    const { DepartmentName, DepartmentShortName, DepartmentCode } = req.body;
+    console.log(req.body)
+    const sql = 'INSERT INTO departments (DepartmentName, DepartmentShortName, DepartmentCode) VALUES (?, ?, ?)';
+
+    con.query(sql, [DepartmentName, DepartmentShortName, DepartmentCode], (err, result) => {
+      if (err) {
+        console.error('Error creating department:', err);
+        return res.json({ Status: 'Error', Message: 'Error creating department' });
+      }
+      console.log('Department created successfully');
+      return res.json({ Status: 'Success', Message: 'Department created successfully' });
+    });
+  });
+
+// delete department 
+app.delete('/departments/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "DELETE FROM departments WHERE id = ?";
+    con.query(sql, [id], (err, result) => {
+        if(err) return res.json({Error: "Delete department error in SQL"});
+        return res.json({Status: "Success", Result: result});
+    });
+});
+
 // Get all employees
 app.get('/employees', (req, res) => {
     const sql = "SELECT * FROM employees";
@@ -208,40 +243,6 @@ app.put("/leavesRejected/:id", (req, res) => {
     });
 });
 
-// it will be used in admin only department
-app.get('/departments', (req, res) => {
-    const sql = "SELECT * FROM departments";
-    con.query(sql, (err, result) => {
-        if(err) return res.json({Error: "Get department error in SQL"});
-        return res.json({Status: "Success", Result: result});
-    });
-});
-
-// department
-app.post('/department/create', (req, res) => {
-    const { DepartmentName, DepartmentShortName, DepartmentCode } = req.body;
-    console.log(req.body)
-    const sql = 'INSERT INTO departments (DepartmentName, DepartmentShortName, DepartmentCode) VALUES (?, ?, ?)';
-
-    con.query(sql, [DepartmentName, DepartmentShortName, DepartmentCode], (err, result) => {
-      if (err) {
-        console.error('Error creating department:', err);
-        return res.json({ Status: 'Error', Message: 'Error creating department' });
-      }
-      console.log('Department created successfully');
-      return res.json({ Status: 'Success', Message: 'Department created successfully' });
-    });
-  });
-
-// delete department 
-app.delete('/departments/:id', (req, res) => {
-    const id = req.params.id;
-    const sql = "DELETE FROM departments WHERE id = ?";
-    con.query(sql, [id], (err, result) => {
-        if(err) return res.json({Error: "Delete department error in SQL"});
-        return res.json({Status: "Success", Result: result});
-    });
-});
 
 // Get all leave types
 app.get('/leavetypes', (req, res) => {

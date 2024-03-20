@@ -42,7 +42,7 @@ function AddEmployee() {
             Password: password,
             Gender: gender,
             Dob: dob,
-            Department: department,
+            Department: selectedLeaveType,
             Address: address,
             City: city,
             Country: country,
