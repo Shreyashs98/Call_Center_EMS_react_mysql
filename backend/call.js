@@ -109,9 +109,10 @@ app.get('/employees/:id', (req, res) => {
 // Update employee by ID
 app.put("/employees/:id", (req, res) => {
     const id = req.params.id;
-    const { firstName, lastName, email, department } = req.body;
-    const sql = "UPDATE employees SET FirstName = ?, LastName = ?, EmailId = ?, Department = ? WHERE id = ?";
-    con.query(sql, [firstName, lastName, email, department, id], (err, result) => {
+    console.log(req.body);
+    const { EmpId,FirstName, LastName, EmailId,Password,Gender,Dob, Department,Address,City,Country,Phonenumber,Status } = req.body;
+    const sql = "UPDATE employees SET EmpId = ?,FirstName = ?, LastName = ?, EmailId = ?,Password = ?,Gender = ?,Dob = ?, Department = ?,Address = ?,City = ?,Country = ?,Phonenumber = ?,Status = ? WHERE id = ?";
+    con.query(sql, [EmpId,FirstName, LastName, EmailId,Password,Gender,Dob, Department,Address,City,Country,Phonenumber,Status, id], (err, result) => {
         if (err) return res.json({Error: "Update employee error in SQL"});
         return res.json({Status: "Success", Result: result});
     });
@@ -172,6 +173,7 @@ app.post('/employeelogin', (req, res) => {
 // Authentication: Register (Admin registration)
 app.post('/register', async (req, res) => {
     const { userName, password, email, fullname } = req.body;
+    console.log(req.body);
     const hashedPassword = await bcrypt.hash(password, 10);
     const sql = "INSERT INTO admin (UserName, Password, fullname, email) VALUES (?, ?, ?, ?)";
     con.query(sql, [userName, hashedPassword, fullname, email], (err, result) => {
@@ -216,7 +218,7 @@ app.get('/adminCount', (req, res) => {
     })
 })
 app.get('/leaveCount', (req, res) => {
-    const sql = "Select count(*) as totalleaves from leaves";
+    const sql = "Select count(*) as totalleaves from leaves where Status = 0";
     con.query(sql, (err, result) => {
         if(err) return res.json({Error: "Error in runnig query"});
         return res.json(result);

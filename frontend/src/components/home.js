@@ -49,7 +49,7 @@ function Home() {
         </div>
         <div style={{ ...boxStyle, backgroundColor: '#4caf50' }} className='px-3 pt-2 pb-3 border shadow-sm w-25'>
           <div className='text-center pb-1'>
-            <h4>Leave Requests</h4>
+            <h4>Pending Requests</h4>
           </div>
           <hr />
           <div>

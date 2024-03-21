@@ -32,9 +32,9 @@ function Leaves() {
             ToDate: toDate,
             FromDate: fromDate,
             Description: description,
-            Status: 0, // Assuming the default status is 0 (pending)
-            IsRead: 0, // Assuming the default IsRead is 0 (unread)
-            empid: 11 // Assuming empid is hardcoded for now
+            Status: 0,
+            IsRead: 0, 
+            empid: 11 
         })
         .then((response) => {
             console.log(response);
@@ -42,7 +42,7 @@ function Leaves() {
                 setCreateStatus("Leave Request Created");
                 setTimeout(() => {
                     navigate('/edashboard');
-                }, 2000); // Redirect to dashboard after 2 seconds
+                }, 2000); 
             } else {
                 setCreateStatus("Failed to create leave request");
             }

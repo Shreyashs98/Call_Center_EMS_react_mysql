@@ -41,7 +41,7 @@ function EditEmployee() {
 
         try {
             await axios.put(`http://localhost:3001/employees/${id}`, employee);
-            navigate("/");
+            navigate("/employee");
         } catch (err) {
             console.log(err);
         }
